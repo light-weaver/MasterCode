@@ -3,4 +3,5 @@
 *.mat
 *.xls
 *.xlsx
+*.fig
 Output/
