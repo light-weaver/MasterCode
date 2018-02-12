@@ -2,17 +2,18 @@
 %% This file currently allows creation of meta-models from datasets
 %% using BioGP and EvoNN, and the optimization of the meta-models
 %% using EvoNN, BioGP, or RVEA.
-
+%%
 %% To be added : Multiple configuration support.
 %%             : Creation of NN models using standard methods
 %%             : Creation of NN and GP models using RVEA
 %%             : Inclusion of other standard modeling methods
 %%             : GUI
-
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 %% The parameters of various algorithms involved can be changed
 %% from the Configuration.m file. Default values for those
 %% parameters are saved in Default.mat
-
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Outputs are saved in the 'Output' folder. Temp folder stores
 %% temporary outputs to be used by the program.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,19 +21,19 @@
 function Autorun()
 clc
 
-Training_Algorithms = {'BioGP'};
-Optimization_Algorithms = {'BioGP' 'EvoNN' 'RVEA'};
+Training_Algorithms = {'EvoNN'};
+Optimization_Algorithms = {'cRVEA'};
 
-Problems = {'jspl08'};
-in_index = [1:7];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
-out_index = [8:9];
+Problems = {'zdt1data'};
+in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
+out_index = [31 32];
 
 ask_user = true; % if true, user will have a choice to cancel optmization.
 use_defaults = true; % if true, Default.mat will be used, otherwise Configuration.m will be used.
 % multi_config = false;
 
 if use_defaults
-    parameters = importdata('Default.mat');
+    parameters = importdata('Const.mat');
 elseif ~multi_config
     parameters = Configuration();
 %else
