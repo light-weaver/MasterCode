@@ -40,7 +40,7 @@ FunctionValue = P_objective('value',obj_val,M,Population,obj,eqCon,ieqCon);
 for Gene = 0 : Generations - 1
     if(Gene == Generations - 1)
         FinalSelection = 1;
-    end;
+    end
 
     %random mating and reproduction
     [MatingPool] = F_mating(Population);
@@ -63,17 +63,17 @@ for Gene = 0 : Generations - 1
         V = V.*repmat((Zmax - Zmin)*1.0,N,1);
         for i = 1:N
             V(i,:) = V(i,:)./norm(V(i,:));
-        end;
+        end
         %update the neighborning angle value for angle normalization
         cosineVV = V*V';
         [scosineVV, neighbor] = sort(cosineVV, 2, 'descend');
         acosVV = acos(scosineVV(:,2));
         refV = (acosVV); 
-    end;
+    end
 
     clc; fprintf('Progress %4s%%\n',num2str(round(Gene/Generations*100,-1)));
 
-end;
+end
 P_output(Population,toc,'cRVEA',Problem,M, obj_val,savedir,obj,eqCon,ieqCon);
 end
 
@@ -100,7 +100,7 @@ switch Problem
     case 'BioGP'
         wlog.T = Setslog.T;
         f_index = Setslog.out_index; in_index = Setslog.in_index;
-        wlog.DataSet = Setslog.DataSet
+        wlog.DataSet = Setslog.DataSet;
         wlog.ymin = min(Setslog.DataSet(:,f_index));
         wlog.ymax = max(Setslog.DataSet(:,f_index));
         wlog.xmin = min(Setslog.DataSet(:,in_index));
