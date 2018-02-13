@@ -1,4 +1,4 @@
-function err_table = autooutput(Setslog)
+function err_table = autooutput(Setslog,savedir)
 
 global ploton saveon fig
 
@@ -16,7 +16,7 @@ err_table = [];
 for i = 1:Setslog.no_run
     pause(2)
     fprintf('Training data %d\n', i)
-    err_table = [err_table; get_trained_data(Setslog, i, yl)];
+    err_table = [err_table; get_trained_data(Setslog, i, yl,savedir)];
 end
 disp(['ERROR TABLE for training of ' yl ' by BioGP:'])
 disp(err_table)

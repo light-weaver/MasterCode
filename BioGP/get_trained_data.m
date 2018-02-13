@@ -1,4 +1,4 @@
-function mico_table = get_trained_data(Setslog, set_no, yl)
+function mico_table = get_trained_data(Setslog, set_no, yl,savedir)
 
 global ploton saveon fig
 
@@ -68,8 +68,8 @@ for l = 1:Setslog.no_run
         end
         plot(DataSet(traindata1,f_index), traindata2, '.r');
         if saveon
-            saveas(fig(2), [yl '_fit' num2str(set_no) 'on' num2str(l)], 'jpg')
-            saveas(fig(1), [yl '_GPtree' num2str(set_no) 'on' num2str(l)], 'jpg')
+            saveas(fig(2), [savedir '/' yl '_fit' num2str(set_no) 'on' num2str(l)], 'jpg')
+            saveas(fig(1), [savedir '/' yl '_GPtree' num2str(set_no) 'on' num2str(l)], 'jpg')
         end
         pause(1)
     end

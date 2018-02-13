@@ -140,7 +140,7 @@ disp(training_subsets);
 eval(['save ' savedir '\Y' num2str(out-out_index(1)+1) '.mat Setslog'])
 copyfile([pwd '\EvoNN\evaluate_obj.m'], savedir);
 close all
-autooutput(Setslog);
+autooutput(Setslog,savedir);
 svr(Setslog,[savedir '\svr_Y' num2str(out-out_index(1)+1)],'trend.mat');
 close all
 end
