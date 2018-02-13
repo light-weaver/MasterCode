@@ -75,6 +75,7 @@ for k = 1:Setslog.no_run
         
         if k == Setslog.no_run
             text(length(trend)+20, 0.5, s, 'fontsize', 30)
+            mkdir(foldername);
             s = [foldername '\run_no' num2str(k) '-var' num2str(in_index(l))];
             %         title(gca, s,'fontsize',18);
             saveas(gcf, s, 'jpg');
