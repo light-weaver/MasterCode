@@ -103,8 +103,8 @@ RVEAopt.fr = 0.1; % frequency to call reference vector
 output.RVEAopt = RVEAopt;
 
 %%cRVEA Optimization Configs===========================
-cRVEAopt.obj(1) = 1 ;  %set 1 for min and -1 for max
-cRVEAopt.obj(2) = 1 ;  %set 1 for min and -1 for max
+cRVEAopt.obj = [1 1];  %set 1 for min and -1 for max
+%cRVEAopt.obj(2) = 1 ;  %set 1 for min and -1 for max
 cRVEAopt.Generations = 500;
 cRVEAopt.p1p2 = num2cell([100 0]); %%[p1 p2] define the number of reference vectors. p1 is the number of divisions along an axis
 cRVEAopt.N = 120;  %%defines the population size.
@@ -112,7 +112,7 @@ cRVEAopt.alpha = 2; % the parameter in APD, the bigger, the faster cRVEA converg
 cRVEAopt.fr = 0.1; % frequency to call reference vector
 
 cRVEAopt.eqCon{1} = ''; %equality constraints(f(Var,Obj)=0)
-cRVEAopt.ieqCon{1} = '2.5-obj2'; %inequality contraints(f(Var,Obj)>0)
+cRVEAopt.ieqCon{1} = '2.5-obj2'; %inequality contraints(f(var,obj)>0)
 %=====================================================
 output.cRVEAopt = cRVEAopt;
 
