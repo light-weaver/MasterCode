@@ -76,6 +76,8 @@ for l = 1:Setslog.no_run
         if saveon
             saveas(fig(2), [savedir '/' yl '_fit' num2str(set_no) 'on' num2str(l)], 'jpg')
             saveas(fig(1), [savedir '/' yl '_NNet' num2str(set_no) 'on' num2str(l)], 'jpg')
+            saveas(fig(2), [savedir '/' yl '_fit' num2str(set_no) 'on' num2str(l)], 'fig')
+            saveas(fig(1), [savedir '/' yl '_NNet' num2str(set_no) 'on' num2str(l)], 'fig')
         end
         pause(1)
     end
