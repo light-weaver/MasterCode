@@ -83,6 +83,7 @@ for k = 1:Setslog.no_run
             s = [foldername '\run_no' num2str(k) '-var' num2str(in_index(l))];
             %         title(gca, s,'fontsize',18);
             saveas(gcf, s, 'jpg');
+            saveas(gcf, s, 'fig');
             pause(0.5)
         end
     end
