@@ -2,9 +2,7 @@ function Opt(Problem,Training_Algorithm, parameters, savedir)
 if ~strcmp(Training_Algorithm,'EvoNN')
 return;
 end
-%PP
-%Predator-Prey GA for Multi-Objective Opt
-%PP
+
 %Predator-Prey GA for Multi-Objective Opt
 clc
 global LB UB obj z1 z2
@@ -14,10 +12,6 @@ global generation F_bad setno
 RandStream('mt19937ar','seed', sum(100*clock));
 figure_handle = [];
 
-% plst = {'\PP_util' '\util'};
-% for i = 1:length(plst)
-%     path([pwd plst{i}], path);
-% end
 %===============User Input=======================================
 obj(1) = parameters.EvoOpt.obj(1);  %set 1 for min and -1 for max
 obj(2) = parameters.EvoOpt.obj(2);  %set 1 for min and -1 for max
@@ -29,11 +23,7 @@ end
 
 wlog(1) = loadwlog(importdata(Setslog{1}), 0, 0);
 wlog(2) = loadwlog(importdata(Setslog{2}), 0, 0);
-% wlog(3) = loadwlog(importdata(Setslog{3}), 0, 0);
-% wlog(4) = loadwlog(importdata(Setslog{4}), 0, 0);
-% wlog(3) = loadwlog(importdata(Setslog{3}), 0, 0);
-%define extra wlog for checking the contraint and edit the contra function
-%as desired
+
 novar = length(wlog(1).in_index);
 LB = []; UB = []; svstr = [savedir '/EvoNN_Pareto.mat'];
 for i = 1:2

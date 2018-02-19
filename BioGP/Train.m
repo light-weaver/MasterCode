@@ -30,7 +30,7 @@ Setslog = [];
 filename = [Problem_name '.xls'];         %Data file
 in_index = parameters.in_index;           %independent variables column no.
 out_index = parameters.out_index;         %dependent variable column no.
-savedir = fullfile(pwd,'Output',Problem_name,'BioGP',parameters.name);
+savedir = fullfile(pwd,'Output',Problem_name,'BioGP');
 mkdir(savedir);
 
 Setslog.evo_type = parameters.Biotrain.evo_type;  %set 1 for only Biobj evolution and 2 for first single obj followed by Biobj evolution
@@ -152,6 +152,7 @@ fprintf('\n\nTrainining Subsets\n');
 disp(training_subsets);
 %====================================
 eval(['save ' savedir '\Y' num2str(out-out_index(1)+1) '.mat Setslog'])
+save([savedir '\parameters.m'],parameters);
 copyfile([pwd '\BioGP\evaluate_obj.m'], savedir);
 close all;
 autooutput(Setslog,savedir);

@@ -30,12 +30,13 @@ Setslog = [];
 filename = [Problem_name '.xls'];         %Data file
 in_index = parameters.in_index;           %independent variables column no.
 out_index = parameters.out_index;         %dependent variable column no.
-savedir = fullfile(pwd,'Output',Problem_name,'EvoNN',parameters.name);
+savedir = fullfile(pwd,'Output',Problem_name,'EvoNN');
 mkdir(savedir);
 
 Xmin = eps; Setslog.Xmin = Xmin;          %normalization range for variables
 Xmax = 1; Setslog.Xmax = Xmax;
 
+save([savedir '\parameters.m'],parameters);
 Setslog.in_index = in_index;
 
 [DataSet,paraname,DATA] = xlsread(filename);
@@ -138,6 +139,7 @@ fprintf('\n\nTrainining Subsets\n');
 disp(training_subsets);
 %====================================
 eval(['save ' savedir '\Y' num2str(out-out_index(1)+1) '.mat Setslog'])
+save([savedir '\parameters.m'],parameters);
 copyfile([pwd '\EvoNN\evaluate_obj.m'], savedir);
 close all
 autooutput(Setslog,savedir);

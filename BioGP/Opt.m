@@ -11,38 +11,17 @@ global generation F_bad setno
 RandStream('mt19937ar','seed', sum(100*clock));
 figure_handle = [];
 
-% plst = {'\adf' '\PP_util' '\util'};
-% for i = 1:length(plst)
-%     path([pwd plst{i}], path);
-% end
 %===============User Input=======================================
 obj(1) = parameters.BioOpt.obj(1);  %set 1 for min and -1 for max
 obj(2) = parameters.BioOpt.obj(2);  %set 1 for min and -1 for max
 Setslog = {};
-for count = 1:length(parameters.out_index);
+for count = 1:length(parameters.out_index)
 Setslog(count) = {[savedir '\Y' num2str(count) '.mat']};
 end
-% obj(1) = -1;             %set 1 for min and -1 for max
-% obj(2) = -1;             %set 1 for min and -1 for max
-% Setslog = {};
-% Setslog(1) = {'Setslog2-3-6_data_num.mat'};
-% Setslog(2) = {'Setslog2-3-7_data_num.mat'};
-% if constraint is applicable
-%for constraint function introduce Setslog(3) and so on
-% Setslog(3) = {'Setslog2-10-8_data_mod_smb1.mat'};
-% Setslog(4) = {'Setslog2-10-9_data_mod_smb1.mat'};
-%loadwlog loads the tree from Setslog file, the prototype:
-%loadwlog(Setslog, setno, index);
-%setno is the training subset used and index is tree index obtained from
-%the pareto front of training, 1 being the tree with lowest error seeting
-%setno =0 takes the last training subset and index = 0 sets the default
-%tree chosen by BioGP training
+
 wlog(1) = loadwlog(importdata(Setslog{1}), 0, 0);
 wlog(2) = loadwlog(importdata(Setslog{2}), 0, 0);
-% wlog(3) = loadwlog(importdata(Setslog{3}), 0, 0);
-% wlog(4) = loadwlog(importdata(Setslog{4}), 0, 0);
-%define extra wlog for checking the contraint and edit the contra function
-%as desired
+
 novar = length(wlog(1).in_index);
 LB = []; UB = []; svstr =[savedir '\BioGP_Pareto.mat'];
 for i = 1:2

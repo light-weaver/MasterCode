@@ -34,42 +34,36 @@ use_defaults = true; % if true, Default.mat will be used, otherwise Configuratio
 
 if use_defaults
     parameters = importdata('Const.mat');
-elseif ~multi_config
-    parameters = Configuration();
-%else
-    %multiconfig support
 end
 
 parameters.in_index = in_index;
 parameters.out_index = out_index;
 
+mkdir('Backup_data');
 for Prob = 1:length(Problems)
-    for param = 1:length(parameters)
-        for Algo = 1:length(Training_Algorithms)
-            oldpath = path;
-            addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
-            Train(Problems{Prob},parameters(param));
-            path(oldpath);
-            pause(5);
-            close all;
-        end
+    for Algo = 1:length(Training_Algorithms)
+        oldpath = path;
+        addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
+        Train(Problems{Prob},parameters);
+        copyfile('Output/*','Backup_data')
+        path(oldpath);
+        pause(5);
+        close all;
     end
 end
 
 for Prob = 1:length(Problems)
-    for param = 1:length(parameters)
-        for Algo = 1:length(Training_Algorithms)
-            for opt = 1:length(Optimization_Algorithms)
-                oldpath = path;
-                addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
-                addpath(genpath([pwd '\' Optimization_Algorithms{opt}]));
-                savedir = fullfile(pwd,'Output',Problems{Prob},Training_Algorithms{Algo},parameters(param).name);
-                addpath(savedir);
-                Opt(Problems{Prob},Training_Algorithms{Algo},parameters(param),savedir);
-                path(oldpath);
-                pause(5);
-                close all;
-            end
+    for Algo = 1:length(Training_Algorithms)
+        for opt = 1:length(Optimization_Algorithms)
+            oldpath = path;
+            addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
+            addpath(genpath([pwd '\' Optimization_Algorithms{opt}]));
+            savedir = fullfile(pwd,'Output',Problems{Prob},Training_Algorithms{Algo});
+            addpath(savedir);
+            Opt(Problems{Prob},Training_Algorithms{Algo},parameters(param),savedir);
+            path(oldpath);
+            pause(5);
+            close all;
         end
     end
 end
