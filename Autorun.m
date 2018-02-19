@@ -28,7 +28,8 @@ Problems = {'zdt1data'};
 in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
 out_index = [31 32];
 
-ask_user = true; % if true, user will have a choice to cancel optmization.
+do_training = true; % if true, training will take place.
+do_optimization = true; % if true, optimization will take place.
 use_defaults = true; % if true, Default.mat will be used, otherwise Configuration.m will be used.
 % multi_config = false;
 
@@ -40,6 +41,7 @@ parameters.in_index = in_index;
 parameters.out_index = out_index;
 
 mkdir('Backup_data');
+if do_training
 for Prob = 1:length(Problems)
     for Algo = 1:length(Training_Algorithms)
         oldpath = path;
@@ -51,7 +53,9 @@ for Prob = 1:length(Problems)
         close all;
     end
 end
+end
 
+if do_optimization
 for Prob = 1:length(Problems)
     for Algo = 1:length(Training_Algorithms)
         for opt = 1:length(Optimization_Algorithms)
@@ -67,5 +71,4 @@ for Prob = 1:length(Problems)
         end
     end
 end
-
-    
+end   
