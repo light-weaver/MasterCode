@@ -36,7 +36,7 @@ mkdir(savedir);
 Xmin = eps; Setslog.Xmin = Xmin;          %normalization range for variables
 Xmax = 1; Setslog.Xmax = Xmax;
 
-save([savedir '\parameters.m'],parameters);
+save([savedir '\parameters.mat'],'parameters');
 Setslog.in_index = in_index;
 
 [DataSet,paraname,DATA] = xlsread(filename);
