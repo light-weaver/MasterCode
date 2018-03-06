@@ -5,7 +5,7 @@ function [Output, Boundary, Coding] = P_objective(Operation,wlog,M,Input,varargi
 		case 'init'
 			novar = length(wlog(1).in_index);
 			LB = []; UB = [];
-				for i = 1:M
+			for i = 1:M
 				LB = [LB; wlog(i).xmin];
 				UB = [UB; wlog(i).xmax];
 			end
