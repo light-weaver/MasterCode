@@ -36,7 +36,6 @@ mkdir(savedir);
 Xmin = eps; Setslog.Xmin = Xmin;          %normalization range for variables
 Xmax = 1; Setslog.Xmax = Xmax;
 
-save([savedir '\parameters.mat'],'parameters');
 Setslog.in_index = in_index;
 
 [DataSet,paraname,DATA] = xlsread(filename);
@@ -139,7 +138,7 @@ fprintf('\n\nTrainining Subsets\n');
 disp(training_subsets);
 %====================================
 eval(['save ' savedir '\Y' num2str(out-out_index(1)+1) '.mat Setslog'])
-save([savedir '\parameters.m'],parameters);
+save([savedir '\parameters.m'],'parameters');
 copyfile([pwd '\EvoNN\evaluate_obj.m'], savedir);
 close all
 autooutput(Setslog,savedir);

@@ -35,7 +35,6 @@ mkdir(savedir);
 
 Setslog.evo_type = parameters.Biotrain.evo_type;  %set 1 for only Biobj evolution and 2 for first single obj followed by Biobj evolution
 
-save([savedir '\parameters.mat'],'parameters');
 Setslog.in_index = in_index;            %input variable cols in datafile
 %Setslog.out_index = out_index;          %output variable col in datafile
 
@@ -153,7 +152,7 @@ fprintf('\n\nTrainining Subsets\n');
 disp(training_subsets);
 %====================================
 eval(['save ' savedir '\Y' num2str(out-out_index(1)+1) '.mat Setslog'])
-save([savedir '\parameters.m'],parameters);
+save([savedir '\parameters.m'],'parameters');
 copyfile([pwd '\BioGP\evaluate_obj.m'], savedir);
 close all;
 autooutput(Setslog,savedir);
