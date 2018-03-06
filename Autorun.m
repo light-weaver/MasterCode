@@ -64,7 +64,7 @@ for Prob = 1:length(Problems)
             addpath(genpath([pwd '\' Optimization_Algorithms{opt}]));
             savedir = fullfile(pwd,'Output',Problems{Prob},Training_Algorithms{Algo});
             addpath(savedir);
-            Opt(Problems{Prob},Training_Algorithms{Algo},parameters(param),savedir);
+            Opt(Problems{Prob},Training_Algorithms{Algo},parameters,savedir);
             path(oldpath);
             pause(5);
             close all;
