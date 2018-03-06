@@ -59,7 +59,7 @@ end
 F.set = temp;
 Setslog.F = F;
 
-T1_set = paraname(2,in_index); %keep terminals name in datafile as simple as possible see run_BioGP and demo datafiles
+T1_set = paraname(1,in_index); %keep terminals name in datafile as simple as possible see run_BioGP and demo datafiles
 T2_set = {};                  %ERC empheral random floating point constant and ADF's with 0 arity
 T.set = [T1_set T2_set];
 Setslog.T = T;
