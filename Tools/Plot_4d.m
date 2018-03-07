@@ -9,6 +9,6 @@ mrkSize = 50; %defines markersize
 FVal = data.FuntionValue(:,objectives);
 %FVal = abs(FVal); %Use if you want to use absolute values of FVal
 close all
-colormap jet;
+colormap jet; % change this to change colour scheme
 scatter3(FVal(:,1),FVal(:,2),FVal(:,3),mrkSize,FVal(:,4))
 colorbar
