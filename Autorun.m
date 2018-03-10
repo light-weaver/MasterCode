@@ -21,10 +21,10 @@
 function Autorun()
 clc
 
-Training_Algorithms = {'EvoNN'};
+Training_Algorithms = {'deepRVEA'};
 Optimization_Algorithms = {'cRVEA'};
 
-Problems = {'zdt1data'};
+Problems = {'ZDT1_data'};
 in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
 out_index = [31 32];
 
@@ -34,7 +34,7 @@ use_defaults = true; % if true, Default.mat will be used, otherwise Configuratio
 % multi_config = false;
 
 if use_defaults
-    parameters = importdata('Const.mat');
+    parameters = importdata('Default.mat');
 end
 
 parameters.in_index = in_index;

@@ -110,5 +110,16 @@ switch Problem
         wlog.func_tree = Setslog.dataset(setno).pareto.P(index);
         wlog.in_index = in_index;
         wlog.out_index = f_index;
+    case 'deepRVEA'
+        if index == 0, select = Setslog.select; end;
+		no_layer = length(Setslog.Population);
+		for layer = 1:no_layer
+		    wlog.net{layer}(:,:) = squeeze(Setslog.Population{layer}(select,:,:));  
+		end
+        wlog.Beta = Setslog.Beta{select};
+        in_index = Setslog.parameters.in_index;
+        wlog.in_index = in_index;
+		wlog.xmin = Setslog.parameters.Data_min(1,in_index);
+        wlog.xmax = Setslog.parameters.Data_max(1,in_index);
 end
 end

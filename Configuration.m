@@ -4,7 +4,7 @@ function output = Configuration()
 % Syntax: output = Configuration()
 %
 % Long description
-output.name = 'Const'; %configuration name
+output.name = 'Default'; %configuration name
 save_configuration = true; 
 %%EvoNN Training Configs=============================
 Evotrain.subsets = 1; Evotrain.overlap = 1;      %number of partitions of datafile and overlap b/w them
@@ -43,6 +43,15 @@ Biotrain.err_red_lim = 1e-3;         %any subtree contibuting less than this val
 %====================================================
 output.Biotrain = Biotrain;
 
+%%deepRVEA Training Parameters%%%%%%%%%%%%%
+RVEAtrain.Generations = 200;		%Number of generations 
+RVEAtrain.NNet_str = [10 5 5];           %maximum number of nodes
+RVEAtrain.p1p2 = num2cell([30 0]); %%[p1 p2] define the number of reference vectors. p1 is the number of divisions along an axis
+RVEAtrain.N = 200;  %%defines the initial population size.
+RVEAtrain.alpha = 10; % the parameter in APD, the bigger, the faster RVEA converges. Default = 2.
+RVEAtrain.fr = 0.1; % frequency to call reference vector realignment
+%=====================================================
+output.RVEAtrain = RVEAtrain;
 
 %%EvoNN Optimization Configs=========================
 EvoOpt.obj(1) = 1 ;  %set 1 for min and -1 for max
@@ -112,7 +121,7 @@ cRVEAopt.alpha = 2; % the parameter in APD, the bigger, the faster cRVEA converg
 cRVEAopt.fr = 0.1; % frequency to call reference vector
 
 cRVEAopt.eqCon{1} = ''; %equality constraints(f(Var,Obj)=0)
-cRVEAopt.ieqCon{1} = '2.5-obj2'; %inequality contraints(f(var,obj)>0)
+cRVEAopt.ieqCon{1} = ''; %inequality contraints(f(var,obj)>0)
 %=====================================================
 output.cRVEAopt = cRVEAopt;
 
