@@ -6,7 +6,7 @@ data = importdata('filename.mat');
 objectives = [1,3,5]; %Only 3 objectives
 mrkSize = 50; %defines markersize
 %=======================================
-FVal = data.FuntionValue(:,objectives);
+FVal = data.FunctionValue(:,objectives);
 %FVal = abs(FVal); %Use if you want to use absolute values of FVal
 close all
 colormap jet; % change this to change colour scheme

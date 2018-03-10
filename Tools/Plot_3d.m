@@ -5,6 +5,6 @@
 data = importdata('filename.mat'); 
 objectives = [1,3,5]; %Only 3 objectives
 %=======================================
-FVal = data.FuntionValue(:,objectives);
+FVal = data.FunctionValue(:,objectives);
 close all
 scatter3(FVal(:,1),FVal(:,2),FVal(:,3),'r');

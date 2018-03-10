@@ -5,7 +5,7 @@ for i = 1:length(plst)
     path([pwd plst{i}], path);
 end
 cd ..\Tools
-Setslog = importdata([filename '.mat']);
+Setslog = importdata(filename);
 T1_set = Setslog.T.set;
 in_index = Setslog.in_index;
 trend = importdata(trend);
