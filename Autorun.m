@@ -27,6 +27,7 @@ Optimization_Algorithms = {'cRVEA'};
 Problems = {'ZDT1_data'};
 in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
 out_index = [31 32];
+param_name = ''; %leave param_name = ''; if you want to use default paramater values.
 
 do_training = true; % if true, training will take place.
 do_optimization = true; % if true, optimization will take place.
@@ -35,6 +36,8 @@ use_defaults = true; % if true, Default.mat will be used, otherwise Configuratio
 
 if use_defaults
     parameters = importdata('Default.mat');
+else 
+    parameters = importdata(param_name);
 end
 
 parameters.in_index = in_index;
