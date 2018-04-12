@@ -19,8 +19,9 @@ function con_val = Contraints(Algorithm,Var,varargin)
 		Obj = varargin{1};
 		eqCon = varargin{2};
 		ieqCon = varargin{3};
+		objective = varargin{4};
 		con_val = zeros(size(Obj,1));
-		con_val = contra_cRVEA(Var,Obj,eqCon,ieqCon);
+		con_val = contra_cRVEA(Var,Obj,eqCon,ieqCon,objective);
 	end
 end
 
@@ -44,9 +45,10 @@ function Fout = contra(Prey, F1, F2)  % constraint function
 	end
 end
 
-function con_val = contra_cRVEA(Var, Obj, eqCon, ieqCon)
+function con_val = contra_cRVEA(Var, Obj, eqCon, ieqCon,objective)
 	numVar = size(Var,2);
 	numObj = size(Obj,2);
+	Obj = Obj .* objective;
 	numEC = length(eqCon);
 	numIC = length(ieqCon);
     eqSum = zeros(length(Var),1);

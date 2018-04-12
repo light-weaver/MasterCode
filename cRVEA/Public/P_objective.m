@@ -23,7 +23,7 @@ function [Output, Boundary, Coding] = P_objective(Operation,wlog,M,Input,varargi
 			for i = 1:M 
 				FunctionValue = [FunctionValue obj(i)*evaluate_obj(Input, wlog(i))];
 			end
-            FunctionValue = [FunctionValue Contraints('cRVEA',Input,FunctionValue,eqCon,ieqCon)];
+            FunctionValue = [FunctionValue Contraints('cRVEA',Input,FunctionValue,eqCon,ieqCon,obj)];
 			Output = FunctionValue;
     end
 end
