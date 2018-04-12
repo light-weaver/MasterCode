@@ -28,7 +28,7 @@ Problems = {'ZDT1_100' 'ZDT1_1000' 'ZDT1_10000' ...
             'ZDT2_100' 'ZDT2_1000' 'ZDT2_10000' ...
             'ZDT3_100' 'ZDT3_1000' 'ZDT3_10000'};
 in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
-out_index = [31 32];
+out_index = [31 32];%Similar Rules.
 
 do_training = true; % if true, training will take place.
 do_optimization = false; % if true, optimization will take place.
@@ -41,8 +41,8 @@ if use_defaults
 else
 	for param = 1:length(param_name)
 		parameters{param} = importdata([param_name{param} '.mat']);
-		parameters{param}.in_index = in_index;
-		parameters{param}.out_index = out_index;
+		parameters{param}.in_index = in_index(param,:);
+		parameters{param}.out_index = out_index(param,:);
 	end
 end
 
@@ -71,15 +71,17 @@ if do_optimization
 for Prob = 1:length(Problems)
     for Algo = 1:length(Training_Algorithms)
         for opt = 1:length(Optimization_Algorithms)
-            oldpath = path;
-            addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
-            addpath(genpath([pwd '\' Optimization_Algorithms{opt}]));
-            savedir = fullfile(pwd,'Output',Problems{Prob},Training_Algorithms{Algo});
-            addpath(savedir);
-            Opt(Problems{Prob},Training_Algorithms{Algo},parameters,savedir);
-            path(oldpath);
-            pause(5);
-            close all;
+			for param = 1:length(parameters)
+				oldpath = path;
+				addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
+				addpath(genpath([pwd '\' Optimization_Algorithms{opt}]));
+				savedir = fullfile(pwd,'Output',Problems{Prob},Training_Algorithms{Algo});
+				addpath(savedir);
+				Opt(Problems{Prob},Training_Algorithms{Algo},parameters{param},savedir);
+				path(oldpath);
+				pause(5);
+				close all;
+			end
         end
     end
 end

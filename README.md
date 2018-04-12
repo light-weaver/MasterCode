@@ -1,5 +1,10 @@
 # MasterCode
-A package of genetic algorithm tools for surrogate modelling and many objective optimization
+##A package of genetic algorithm tools for surrogate modelling and many objective optimization
 
+**Read the .docx file provided to understand the code**
 
-To be added:  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on
+###To be fixed
+cRVEA contraints conflict: eqn{}-obj[]
+###To be added:	
+New Algorithm: Family Neural Networks
+Killing connection mechanism
