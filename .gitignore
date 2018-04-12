@@ -4,3 +4,8 @@
 *.xlsx
 *.fig
 Output/
+*.svg
+*.png
+*.tif
+*.bmp
+*.emf

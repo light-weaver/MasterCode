@@ -4,6 +4,8 @@ clc;format short;
 newpath = pwd;
 addpath([newpath 'deepRVEA\Public'], [newpath 'deepRVEA\RVEA']);
 warning off
+savedir = fullfile(pwd,'Output',Problem_name,...
+					'deepRVEA');
 in_index = parameters.in_index;           %independent variables column no.
 out_index = parameters.out_index;         %dependent variable column no.
 parameters = parameters.RVEAtrain;
@@ -20,8 +22,7 @@ parameters.DataSet = DataSet;
 parameters.noinnodes = length(in_index);
 parameters.NNet_str = [parameters.noinnodes parameters.NNet_str];
 
-savedir = fullfile(pwd,'Output',Problem_name,...
-					'deepRVEA');
+
 mkdir(savedir);
 
 Xmin = eps; parameters.Xmin = Xmin;          %normalization range for variables

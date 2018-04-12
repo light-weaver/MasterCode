@@ -30,7 +30,7 @@ Setslog = [];
 filename = [Problem_name '.xls'];         %Data file
 in_index = parameters.in_index;           %independent variables column no.
 out_index = parameters.out_index;         %dependent variable column no.
-savedir = fullfile(pwd,'Output',Problem_name,'BioGP');
+savedir = fullfile(pwd,'Output',Problem_name,parameters.name,'BioGP');
 mkdir(savedir);
 
 Setslog.evo_type = parameters.Biotrain.evo_type;  %set 1 for only Biobj evolution and 2 for first single obj followed by Biobj evolution

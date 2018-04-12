@@ -24,37 +24,49 @@ clc
 Training_Algorithms = {'deepRVEA'};
 Optimization_Algorithms = {'cRVEA'};
 
-Problems = {'ZDT1_data'};
+Problems = {'ZDT1_100' 'ZDT1_1000' 'ZDT1_10000' ...
+            'ZDT2_100' 'ZDT2_1000' 'ZDT2_10000' ...
+            'ZDT3_100' 'ZDT3_1000' 'ZDT3_10000'};
 in_index = [1:30];  %in_index = [a:b ; c:d; e:f] a:b for Problem 1, c:d for problem 2, and so on;
 out_index = [31 32];
 
 do_training = true; % if true, training will take place.
-do_optimization = true; % if true, optimization will take place.
-use_defaults = true; % if true, Default.mat will be used, otherwise Configuration.m will be used.
+do_optimization = false; % if true, optimization will take place.
+use_defaults = false; % if true, Default.mat will be used, otherwise Configuration.m will be used.
 % multi_config = false;
-
+param_name = {'alfhalf' 'alf1' 'alf2' 'alf3' 'alf4' 'alf5' ...
+				'alf6' 'alf7' 'alf8' 'alf9' 'alf10' 'alf11' 'alf12' 'alf20' };
 if use_defaults
-    parameters = importdata('Default.mat');
+    parameters = importdata('default.mat');
+else
+	for param = 1:length(param_name)
+		parameters{param} = importdata([param_name{param} '.mat']);
+		parameters{param}.in_index = in_index;
+		parameters{param}.out_index = out_index;
+	end
 end
 
-parameters.in_index = in_index;
-parameters.out_index = out_index;
+
+% parameters.in_index = in_index;
+% parameters.out_index = out_index;
 
 mkdir('Backup_data');
 if do_training
 for Prob = 1:length(Problems)
     for Algo = 1:length(Training_Algorithms)
-        oldpath = path;
-        addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
-        Train(Problems{Prob},parameters);
-        copyfile('Output/*','Backup_data')
-        path(oldpath);
-        pause(5);
-        close all;
+		for param = 1:length(parameters)
+			oldpath = path;
+			addpath(genpath([pwd '\' Training_Algorithms{Algo}]));
+			Train(Problems{Prob},parameters{param});
+			%copyfile('Output/*','Backup_data')
+			path(oldpath);
+			pause(5);
+			close all;
+		end
     end
 end
 end
-
+%param_name not added
 if do_optimization
 for Prob = 1:length(Problems)
     for Algo = 1:length(Training_Algorithms)

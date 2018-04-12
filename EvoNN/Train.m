@@ -30,7 +30,7 @@ Setslog = [];
 filename = [Problem_name '.xls'];         %Data file
 in_index = parameters.in_index;           %independent variables column no.
 out_index = parameters.out_index;         %dependent variable column no.
-savedir = fullfile(pwd,'Output',Problem_name,'EvoNN');
+savedir = fullfile(pwd,'Output',Problem_name,parametsres.name,'EvoNN');
 mkdir(savedir);
 
 Xmin = eps; Setslog.Xmin = Xmin;          %normalization range for variables
