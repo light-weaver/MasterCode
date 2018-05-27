@@ -2,4 +2,4 @@ data = importdata('');
 data = data.FunctionValue;
 Obj_Name = {'',''};
 
-parallelcoords(data, 'label', Obj_name)
+parallelcoords(data, 'label', Obj_name,'Standardize','on')
